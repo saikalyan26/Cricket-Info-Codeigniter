@@ -24,6 +24,7 @@ class Cricket extends CI_Controller {
 		$data['get_matches_count'] = $get_matches_count;
 
 		$this->load->view('cricket_matches_list_view', $data);
+		//here the sori
 	}
 
 	/*********************************************************
