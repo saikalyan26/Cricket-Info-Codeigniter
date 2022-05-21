@@ -24,6 +24,17 @@ class Cricket extends CI_Controller {
 		$data['get_matches_count'] = $get_matches_count;
 
 		$this->load->view('cricket_matches_list_view', $data);
+
+		$offset 				= $this->input->post('offset') == "" ? 0 : $this->input->post('offset');		
+		$data['matches_list'] 	=	$matches_list = $this->cricket->get_matches_list($limit=5,$offset);	
+		$data['teams_list'] 	=	$this->cricket->get_teams_list();
+		
+		$get_matches_count 		= $this->cricket->get_matches_count();		
+		$data['start'] 			= ($offset) ? $offset : 0;
+		$data['end'] 			= ($get_matches_count > $offset) ? $offset+5 : $offset;
+		$data['get_matches_count'] = $get_matches_count;
+
+		$this->load->view('cricket_matches_list_view', $data);
 		//here the sori
 	}
 
